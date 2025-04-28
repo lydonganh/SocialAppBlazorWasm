@@ -1,0 +1,38 @@
+﻿@page "/login"
+@using Blazored.LocalStorage
+@using SocialApp.Web.Services;
+@inject IAuthService AuthService
+@inject NavigationManager Navigation
+@inject ILocalStorageService LocalStorage
+
+<h3>Login</h3>
+
+<EditForm Model="@viewModel" OnValidSubmit="OnSubmitAsync">
+    <div>
+        <InputText @bind-Value="viewModel.Email" placeholder="Email" class="form-control" />
+    </div>
+    <div>
+        <InputText @bind-Value="viewModel.Password" type="password" placeholder="Password" class="form-control" />
+    </div>
+    <div class="mt-2">
+        <button type="submit" class="btn btn-primary" disabled="@viewModel.IsLoading">
+            @(viewModel.IsLoading ? "Logging in..." : "Login")
+        </button>
+    </div>
+    @if (!string.IsNullOrEmpty(viewModel.ErrorMessage))
+    {
+        <div class="text-danger mt-2">@viewModel.ErrorMessage</div>
+    }
+</EditForm>
+
+@code {
+    private LoginViewModel viewModel = new();
+
+    private async Task OnSubmitAsync()
+    {
+        viewModel.AuthService = AuthService;
+        viewModel.Navigation = Navigation;
+        viewModel.LocalStorage = LocalStorage;
+        await viewModel.LoginAsync();
+    }
+}
