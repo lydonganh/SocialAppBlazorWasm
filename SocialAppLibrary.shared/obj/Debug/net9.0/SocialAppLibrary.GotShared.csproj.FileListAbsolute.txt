@@ -1,0 +1,48 @@
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.deps.json
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.dll
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.AssemblyReference.cache
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.GeneratedMSBuildEditorConfig.editorconfig
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfoInputs.cache
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfo.cs
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.CoreCompileInputs.cache
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.dll
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\refint\SocialAppLibrary.GotShared.dll
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+D:\Net Maui Project\tester\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\ref\SocialAppLibrary.GotShared.dll
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.deps.json
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.dll
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.AssemblyReference.cache
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.GeneratedMSBuildEditorConfig.editorconfig
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfoInputs.cache
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfo.cs
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.CoreCompileInputs.cache
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.dll
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\refint\SocialAppLibrary.GotShared.dll
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+C:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\ref\SocialAppLibrary.GotShared.dll
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.deps.json
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.dll
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.AssemblyReference.cache
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.GeneratedMSBuildEditorConfig.editorconfig
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfoInputs.cache
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfo.cs
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.CoreCompileInputs.cache
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.dll
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\refint\SocialAppLibrary.GotShared.dll
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+D:\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\ref\SocialAppLibrary.GotShared.dll
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.deps.json
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.dll
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\bin\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.AssemblyReference.cache
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.GeneratedMSBuildEditorConfig.editorconfig
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfoInputs.cache
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.AssemblyInfo.cs
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.csproj.CoreCompileInputs.cache
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.dll
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\refint\SocialAppLibrary.GotShared.dll
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\SocialAppLibrary.GotShared.pdb
+D:\hehe\SocialApp\SocialApp\SocialAppLibrary.shared\obj\Debug\net9.0\ref\SocialAppLibrary.GotShared.dll
