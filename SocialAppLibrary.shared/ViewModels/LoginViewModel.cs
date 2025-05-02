@@ -60,148 +60,7 @@ namespace SocialAppLibrary.GotShared.ViewModels
 
 
 
-        //[RelayCommand]
-        //private async Task LoginAsync()
-        //{
-        //    if (IsBusy) return;
-        //    IsBusy = true; // Đặt trước khi gọi API
-        //    ErrorMessage = string.Empty;
-        //    try { 
-        //    // Validate input
-        //    if (!ValidateInput(out string validationError))
-        //    {
-        //        ErrorMessage = validationError;
-        //        await ToastAsync(ErrorMessage);
-        //        _logger.LogWarning("Validation failed: {ErrorMessage}", ErrorMessage);
-        //        return;
-        //    }
 
-        //    await MakeApiCall(async () =>
-        //    {
-        //        _logger.LogInformation("Attempting login for email={Email}", Email);
-
-        //        var loginDto = new LoginDto(Email, Password);
-        //        try
-        //        {
-        //            var result = await _authApi.LoginAsync(loginDto);
-        //            _logger.LogInformation("API response: IsSuccess={IsSuccess}, Error={Error}, Data={Data}",
-        //                result.IsSuccess, result.Error, result.Data);
-
-        //            if (!result.IsSuccess)
-        //            {
-        //                ErrorMessage = result.Error ?? "Login failed.";
-        //                _logger.LogError("Login failed: {ErrorMessage}", ErrorMessage);
-        //                throw new Exception(ErrorMessage);
-        //            }
-
-        //            await _authService.Login(result.Data);
-        //            _logger.LogInformation("Login successful for email={Email}", Email);
-
-        //            _appPreferences.SetBool("RememberLogin", RememberMe);
-        //            _logger.LogInformation("RememberLogin set to {RememberMe}", RememberMe);
-
-        //            Password = string.Empty;
-        //            await NavigationAsync("//HomePage");
-        //            _logger.LogInformation("Navigated to HomePage");
-        //        }
-        //        catch (ApiException ex)
-        //        {
-        //            _logger.LogError(ex, "API call failed: StatusCode={StatusCode}, Content={Content}",
-        //                ex.StatusCode, ex.Content);
-        //            ErrorMessage = ex.Content ?? "Failed to connect to the server.";
-        //            throw new Exception(ErrorMessage, ex);
-        //        }
-        //    });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, "LoginAsync failed");
-        //        ErrorMessage = ex.Message;
-        //        await ToastAsync(ErrorMessage);
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //        _logger.LogInformation("LoginAsync completed");
-        //    }
-        //}
-        //[RelayCommand]
-        //private async Task LoginAsync()
-        //{
-        //    if (IsBusy) return;
-        //    IsBusy = true;
-        //    ErrorMessage = string.Empty;
-
-        //    try
-        //    {
-        //        if (!ValidateInput(out string validationError))
-        //        {
-        //            ErrorMessage = validationError;
-        //            await ToastAsync(ErrorMessage);
-        //            _logger.LogWarning("Validation failed: {ErrorMessage}", ErrorMessage);
-        //            return;
-        //        }
-
-        //        await MakeApiCall(async () =>
-        //        {
-        //            _logger.LogInformation("Attempting login for email={Email}", Email);
-
-        //            var loginDto = new LoginDto(Email, Password);
-        //            try
-        //            {
-        //                // Gọi API trực tiếp để lấy phản hồi thô
-        //                var httpClient = new HttpClient();
-        //                httpClient.BaseAddress = new Uri("https://v864p92g-7175.asse.devtunnels.ms");
-        //                var requestContent = new StringContent(
-        //                    System.Text.Json.JsonSerializer.Serialize(loginDto),
-        //                    System.Text.Encoding.UTF8,
-        //                    "application/json");
-        //                var response = await httpClient.PostAsync("/api/auth/login", requestContent);
-        //                var responseContent = await response.Content.ReadAsStringAsync();
-        //                _logger.LogInformation("Raw API response: {ResponseContent}", responseContent);
-
-        //                var result = await _authApi.LoginAsync(loginDto);
-        //                _logger.LogInformation("Deserialized API response: IsSuccess={IsSuccess}, Error={Error}, Data={Data}",
-        //                    result.IsSuccess, result.Error, result.Data);
-
-        //                if (!result.IsSuccess)
-        //                {
-        //                    ErrorMessage = result.Error ?? "Login failed.";
-        //                    _logger.LogError("Login failed: {ErrorMessage}", ErrorMessage);
-        //                    throw new Exception(ErrorMessage);
-        //                }
-
-        //                await _authService.Login(result.Data);
-        //                _logger.LogInformation("Login successful for email={Email}", Email);
-
-        //                _appPreferences.SetBool("RememberLogin", RememberMe);
-        //                _logger.LogInformation("RememberLogin set to {RememberMe}", RememberMe);
-
-        //                Password = string.Empty;
-        //                await NavigationAsync("//HomePage");
-        //                _logger.LogInformation("Navigated to HomePage");
-        //            }
-        //            catch (ApiException ex)
-        //            {
-        //                _logger.LogError(ex, "API call failed: StatusCode={StatusCode}, Content={Content}",
-        //                    ex.StatusCode, ex.Content);
-        //                ErrorMessage = ex.Content ?? "Failed to connect to the server.";
-        //                throw new Exception(ErrorMessage, ex);
-        //            }
-        //        });
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        _logger.LogError(ex, "LoginAsync failed");
-        //        ErrorMessage = ex.Message;
-        //        await ToastAsync(ErrorMessage);
-        //    }
-        //    finally
-        //    {
-        //        IsBusy = false;
-        //        _logger.LogInformation("LoginAsync completed");
-        //    }
-        //}
 
         [RelayCommand]
         private async Task LoginAsync()
@@ -223,64 +82,27 @@ namespace SocialAppLibrary.GotShared.ViewModels
                 await MakeApiCall(async () =>
                 {
                     _logger.LogInformation("Attempting login for email={Email}", Email);
-
                     var loginDto = new LoginDto(Email, Password);
-                    try
+                    var result = await _authApi.LoginAsync(loginDto);
+
+                    if (result == null || !result.IsSuccess || result.Data?.User == null || string.IsNullOrEmpty(result.Data.Token))
                     {
-                        var result = await _authApi.LoginAsync(loginDto);
-                        
-                        if (result == null)
-                        {
-                            ErrorMessage = "Login failed: Empty response from server.";
-                            _logger.LogError("Login failed: {ErrorMessage}", ErrorMessage);
-                            throw new Exception(ErrorMessage);
-                        }
-                        // trong service thi tra ve return ApiResult<LoginResponse>.Success(loginResponse);
-                        _logger.LogInformation("API response: IsSuccess={IsSuccess}, Error={Error}, UserId={UserId}, Token={Token}, RefreshToken={RefreshToken}",
-                            result.IsSuccess, result.Error, result.Data?.User?.ID, result.Data?.Token, result.Data?.RefreshToken);
-                        if (!result.IsSuccess)
-                        {
-                            ErrorMessage = result.Error ?? "Login failed.";
-                            _logger.LogError("Login failed: {ErrorMessage}", ErrorMessage);
-                            throw new Exception(ErrorMessage);
-                        }
-
-                        if (result.Data?.User == null || string.IsNullOrEmpty(result.Data.Token))
-                        {
-                            ErrorMessage = "Login failed: Invalid response from server.";
-                            _logger.LogError("Login failed: {ErrorMessage}", ErrorMessage);
-                            throw new Exception(ErrorMessage);
-                        }
-
-                        await _authService.Login(result.Data);
-                        _logger.LogInformation("Login successful for email={Email}", Email);
-                        try
-                        {
-                            await Shell.Current.GoToAsync("//HomePage");
-                        }
-                        catch (Exception ex)
-                        {
-                            Debug.WriteLine($"Navigation error: {ex.Message}");
-                        }
-                        _logger.LogInformation("Navigated to HomePage");
-                        _appPreferences.SetBool("RememberLogin", RememberMe);
-                        _logger.LogInformation("RememberLogin set to {RememberMe}", RememberMe);
-
-                        Password = string.Empty;
-                        
+                        ErrorMessage = result?.Error ?? "Login failed: Invalid response from server.";
+                        _logger.LogError("Login failed: {ErrorMessage}", ErrorMessage);
+                        throw new Exception(ErrorMessage);
                     }
-                    catch (ApiException ex)
-                    {
 
-                        _logger.LogError(ex, "API call failed: StatusCode={StatusCode}, Content={Content}",
-      ex.StatusCode, ex.Content); // `Content` đã là raw JSON string
-
-                        var rawResponse = ex.Content; // ✅ Đây là raw JSON string
-
-                        _logger.LogError("Raw response: {RawResponse}", rawResponse);
-
-                    }
+                    await _authService.Login(result.Data);
+                    _logger.LogInformation("Login successful for email={Email}", Email);
+                    await Shell.Current.GoToAsync("//HomePage");
+                    _appPreferences.SetBool("RememberLogin", RememberMe);
+                    _logger.LogInformation("RememberLogin set to {RememberMe}", RememberMe);
+                    Password = string.Empty;
                 });
+            }
+            catch (ApiException ex)
+            {
+                await HandleLoginError(ex);
             }
             catch (Exception ex)
             {
@@ -292,17 +114,6 @@ namespace SocialAppLibrary.GotShared.ViewModels
             {
                 IsBusy = false;
                 _logger.LogInformation("LoginAsync completed");
-                try
-                {
-                    await Shell.Current.GoToAsync("//HomePage");
-                }
-                catch (Exception ex)
-                {
-                    Debug.WriteLine($"Navigation error: {ex.Message}");
-                }
-
-
-                _logger.LogInformation("Navigated to HomePage");
             }
         }
         [RelayCommand]
@@ -322,6 +133,14 @@ namespace SocialAppLibrary.GotShared.ViewModels
             _logger.LogInformation("Navigated to SignUpPage");
         }
 
+        private async Task HandleLoginError(ApiException ex)
+        {
+            _logger.LogError(ex, "API call failed: StatusCode={StatusCode}, Content={Content}", ex.StatusCode, ex.Content);
+            var rawResponse = ex.Content;
+            _logger.LogError("Raw response: {RawResponse}", rawResponse);
+            ErrorMessage = ex.Content ?? "Failed to connect to the server.";
+            await ToastAsync(ErrorMessage);
+        }
         private bool ValidateInput(out string errorMessage)
         {
             errorMessage = string.Empty;

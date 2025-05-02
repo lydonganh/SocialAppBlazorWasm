@@ -78,28 +78,15 @@ namespace SocialAppLibrary.GotShared.ViewModels
             }
         }
 
-        protected async Task MakeApiCall(Func<Task> apiCall)
+        private async Task HandleApiExceptionAsync(ApiException ex)
         {
-            if (IsBusy)
-            {
-                _logger.LogWarning("API call skipped: ViewModel is busy");
-                return;
-            }
-
-            IsBusy = true;
-            try
-            {
-                await apiCall.Invoke();
-                _logger.LogInformation("API call completed successfully");
-            }
-            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
+            if (ex.StatusCode == HttpStatusCode.Unauthorized)
             {
                 _logger.LogWarning("Unauthorized error (401), attempting to refresh token");
                 var refreshed = await _authService.RefreshTokenAsync();
                 if (refreshed)
                 {
                     _logger.LogInformation("Token refreshed successfully, retrying API call");
-                    await apiCall.Invoke();
                 }
                 else
                 {
@@ -109,24 +96,14 @@ namespace SocialAppLibrary.GotShared.ViewModels
                     await NavigationAsync("//loginPage");
                 }
             }
-            catch (ApiException ex)
+            else
             {
                 _logger.LogError(ex, "API error: {StatusCode} - {Message}", ex.StatusCode, ex.Message);
                 await ShowErrorAlertAsync($"Server error: {ex.Message}");
             }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Unexpected error: {Message}", ex.Message);
-                await ShowErrorAlertAsync("An unexpected error occurred.");
-            }
-            finally
-            {
-                IsBusy = false;
-                _logger.LogInformation("API call finished, IsBusy=false");
-            }
         }
 
-        protected async Task<T> MakeApiCall<T>(Func<Task<T>> apiCall)
+        private async Task<T> ExecuteApiCall<T>(Func<Task<T>> apiCall)
         {
             if (IsBusy)
             {
@@ -138,31 +115,12 @@ namespace SocialAppLibrary.GotShared.ViewModels
             try
             {
                 var result = await apiCall.Invoke();
-                _logger.LogInformation("API call completed successfully with result");
+                _logger.LogInformation("API call completed successfully");
                 return result;
-            }
-            catch (ApiException ex) when (ex.StatusCode == HttpStatusCode.Unauthorized)
-            {
-                _logger.LogWarning("Unauthorized error (401), attempting to refresh token");
-                var refreshed = await _authService.RefreshTokenAsync();
-                if (refreshed)
-                {
-                    _logger.LogInformation("Token refreshed successfully, retrying API call");
-                    return await apiCall.Invoke();
-                }
-                else
-                {
-                    _logger.LogError("Failed to refresh token, logging out");
-                    await _authService.Logout();
-                    await ShowErrorAlertAsync("Session expired. Please log in again.");
-                    await NavigationAsync("//loginPage");
-                    return default;
-                }
             }
             catch (ApiException ex)
             {
-                _logger.LogError(ex, "API error: {StatusCode} - {Message}", ex.StatusCode, ex.Message);
-                await ShowErrorAlertAsync($"Server error: {ex.Message}");
+                await HandleApiExceptionAsync(ex);
                 return default;
             }
             catch (Exception ex)
@@ -176,6 +134,20 @@ namespace SocialAppLibrary.GotShared.ViewModels
                 IsBusy = false;
                 _logger.LogInformation("API call finished, IsBusy=false");
             }
+        }
+
+        protected Task MakeApiCall(Func<Task> apiCall)
+        {
+            return ExecuteApiCall(async () =>
+            {
+                await apiCall();
+                return true;
+            });
+        }
+
+        protected Task<T> MakeApiCall<T>(Func<Task<T>> apiCall)
+        {
+            return ExecuteApiCall(apiCall);
         }
     }
 }
